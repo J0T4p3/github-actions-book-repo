@@ -7,8 +7,13 @@ jobs:
     name: Things that a cow would say
     runs-on: ubuntu-latest
     steps:
+    - name: update machina
+      run: sudo apt update
     - name: install cowsay
-      run: |
-        sudo apt update
+      run: 
         sudo apt install -y cowsay
-        /usr/games/cowsay "Moo!"
+    - name: install fortune
+      run: sudo apt install -y fortune
+    - name: Philosopher Cow says
+      run: |
+        fortune | cowsay
