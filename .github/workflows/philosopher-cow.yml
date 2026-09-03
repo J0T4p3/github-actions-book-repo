@@ -1,10 +1,10 @@
-name: Action Indeed
+name: Philosopher Cow say
 on:
   issue_comment:
     types: [created, deleted, edited]
 jobs:
-  cowsay:
-    name: Things that a cow would say
+  setup:
+    name: cowsay setup
     runs-on: ubuntu-latest
     steps:
     - name: update machina
@@ -14,6 +14,9 @@ jobs:
         sudo apt install -y cowsay
     - name: install fortune
       run: sudo apt install -y fortune
-    - name: Philosopher Cow says
-      run: |
-        fortune | cowsay
+  cowsay:
+    name: Enlight us with Cow knowledge
+    runs-on: ubuntu-latest
+    steps:
+    - name: Say that to us
+      run: fortune | cowsay
