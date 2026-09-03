@@ -1,0 +1,14 @@
+name: Action Indeed
+on:
+  issue_comment:
+    types: [created, deleted, edited]
+jobs:
+  cowsay:
+    name: Things that a cow would say
+    runs-on: ubuntu-latest
+    steps:
+    - name: install cowsay
+      run: |
+        sudo apt update
+        sudo apt install -y cowsay
+        /usr/games/cowsay "Moo!"
