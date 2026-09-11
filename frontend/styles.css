@@ -11,12 +11,52 @@ body {
   place-items: center;
 }
 
+.layout {
+  display: grid;
+  grid-template-columns: minmax(16rem, 28rem) minmax(16rem, 36rem);
+  gap: 2rem;
+  width: min(90%, 68rem);
+  padding: 2rem 0;
+}
+
 .card {
-  width: min(90%, 28rem);
   padding: 2rem;
   border-radius: 0.75rem;
   background: white;
   box-shadow: 0 0.75rem 2rem rgb(31 41 55 / 15%);
+}
+
+.posts {
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background: white;
+  box-shadow: 0 0.75rem 2rem rgb(31 41 55 / 15%);
+}
+
+.posts h2 {
+  margin-top: 0;
+}
+
+article {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+article:first-child {
+  padding-top: 0;
+}
+
+article:last-child {
+  border-bottom: 0;
+}
+
+article h3 {
+  margin: 0 0 0.5rem;
+}
+
+article p {
+  margin: 0;
+  white-space: pre-wrap;
 }
 
 h1 {
@@ -58,4 +98,10 @@ button:hover {
 #result {
   min-height: 1.5rem;
   color: #3730a3;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
 }

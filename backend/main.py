@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 
-app = FastAPI(title="Simple Form API")
+app = FastAPI(title="Simple Blog API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -14,9 +14,12 @@ app.add_middleware(
 )
 
 
-class FormSubmission(BaseModel):
-    name: str
-    message: str
+class BlogPost(BaseModel):
+    title: str
+    text: str
+
+
+posts: list[BlogPost] = []
 
 
 @app.get("/api/health")
@@ -24,9 +27,12 @@ def health_check() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.post("/api/submit")
-def submit_form(submission: FormSubmission) -> dict[str, str]:
-    return {
-        "message": f"Thanks, {submission.name}! Your message was received.",
-        "submitted_message": submission.message,
-    }
+@app.get("/api/posts")
+def get_posts() -> list[BlogPost]:
+    return posts
+
+
+@app.post("/api/posts", status_code=201)
+def create_post(post: BlogPost) -> BlogPost:
+    posts.append(post)
+    return post

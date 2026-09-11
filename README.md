@@ -1,6 +1,7 @@
 # Simple FastAPI project
 
-This project contains a small FastAPI backend and a static frontend form.
+This project contains a small FastAPI backend and a static blog frontend. Posts
+are stored in memory and are lost when the backend restarts.
 
 ## Run the backend
 
@@ -10,9 +11,9 @@ python -m pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-The API is available at `http://localhost:8000`. The form endpoint is
-`POST /api/submit`, and the interactive API documentation is available at
-`http://localhost:8000/docs`.
+The API is available at `http://localhost:8000`. The API provides `GET /api/posts` to retrieve all posts and `POST /api/posts`
+to create a post with `title` and `text` fields. Interactive API
+documentation is available at `http://localhost:8000/docs`.
 
 ## Run the frontend
 
