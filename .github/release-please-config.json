@@ -1,0 +1,14 @@
+{
+  "separate-pull-requests": true,
+  "include-component-in-tag": true,
+  "packages": {
+    "backend": {
+      "release-type": "simple",
+      "component": "backend"
+    },
+    "frontend": {
+      "release-type": "simple",
+      "component": "frontend"
+    }
+  }
+}
