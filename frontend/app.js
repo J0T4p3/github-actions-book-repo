@@ -14,10 +14,12 @@ function renderPosts(posts) {
     const article = document.createElement("article");
     const title = document.createElement("h3");
     const text = document.createElement("p");
+    const author = document.createElement("p");
 
     title.textContent = post.title;
     text.textContent = post.text;
-    article.append(title, text);
+    author.textContent = post.author;
+    article.append(title, text, author);
     postsList.append(article);
   });
 }
@@ -39,6 +41,7 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     title: formData.get("title"),
     text: formData.get("text"),
+    author: formData.get("author"),
   };
 
   try {
