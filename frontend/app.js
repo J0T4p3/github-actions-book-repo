@@ -41,7 +41,7 @@ form.addEventListener("submit", async (event) => {
   const payload = {
     title: formData.get("title"),
     text: formData.get("text"),
-    author: formData.get("author"),
+    author: formData.get("author-name"),
   };
 
   try {
