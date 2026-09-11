@@ -3,25 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Form</title>
+    <title>Simple Blog</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="card">
-      <h1>Send a message</h1>
-      <p>Submit the form to the FastAPI backend.</p>
+    <main class="layout">
+      <section class="card">
+        <h1>Simple Blog</h1>
+        <p>Write a new post and share it on the front page.</p>
 
-      <form id="message-form">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" required />
+        <form id="post-form">
+          <label for="title">Blog title</label>
+          <input id="title" name="title" type="text" required />
 
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+          <label for="text">Blog text</label>
+          <textarea id="text" name="text" rows="7" required></textarea>
 
-        <button type="submit">Submit</button>
-      </form>
+          <button type="submit">Publish post</button>
+        </form>
 
-      <p id="result" role="status"></p>
+        <p id="result" role="status"></p>
+      </section>
+
+      <section class="posts">
+        <h2>Posts</h2>
+        <div id="posts-list"></div>
+      </section>
     </main>
 
     <script src="app.js"></script>

@@ -1,5 +1,35 @@
-const form = document.querySelector("#message-form");
+const form = document.querySelector("#post-form");
 const result = document.querySelector("#result");
+const postsList = document.querySelector("#posts-list");
+
+function renderPosts(posts) {
+  postsList.replaceChildren();
+
+  if (posts.length === 0) {
+    postsList.textContent = "No posts yet. Be the first to publish one.";
+    return;
+  }
+
+  posts.forEach((post) => {
+    const article = document.createElement("article");
+    const title = document.createElement("h3");
+    const text = document.createElement("p");
+
+    title.textContent = post.title;
+    text.textContent = post.text;
+    article.append(title, text);
+    postsList.append(article);
+  });
+}
+
+async function loadPosts() {
+  const response = await fetch("http://localhost:8000/api/posts");
+  if (!response.ok) {
+    throw new Error("Unable to load posts.");
+  }
+
+  renderPosts(await response.json());
+}
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -7,12 +37,12 @@ form.addEventListener("submit", async (event) => {
 
   const formData = new FormData(form);
   const payload = {
-    name: formData.get("name"),
-    message: formData.get("message"),
+    title: formData.get("title"),
+    text: formData.get("text"),
   };
 
   try {
-    const response = await fetch("http://localhost:8000/api/submit", {
+    const response = await fetch("http://localhost:8000/api/posts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -23,9 +53,14 @@ form.addEventListener("submit", async (event) => {
     }
 
     const data = await response.json();
-    result.textContent = data.message;
+    result.textContent = "Post published.";
     form.reset();
+    await loadPosts();
   } catch (error) {
     result.textContent = error.message;
   }
+});
+
+loadPosts().catch((error) => {
+  result.textContent = error.message;
 });
