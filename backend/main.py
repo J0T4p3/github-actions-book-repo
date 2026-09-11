@@ -17,6 +17,7 @@ app.add_middleware(
 class BlogPost(BaseModel):
     title: str
     text: str
+    author: str
 
 
 posts: list[BlogPost] = []
