@@ -1,0 +1,25 @@
+:host {
+  display: block;
+}
+
+article {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+article:first-child {
+  padding-top: 0;
+}
+
+article:last-child {
+  border-bottom: 0;
+}
+
+article h3 {
+  margin: 0 0 0.5rem;
+}
+
+article p {
+  margin: 0;
+  white-space: pre-wrap;
+}

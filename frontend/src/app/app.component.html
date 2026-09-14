@@ -1,0 +1,33 @@
+<main class="layout">
+  <section class="card">
+    <h1>Simple Blog</h1>
+    <p>Write a new post and share it on the front page.</p>
+
+    <form (ngSubmit)="publishPost()" #postForm="ngForm">
+      <label for="title">Blog title</label>
+      <input id="title" name="title" type="text" required [(ngModel)]="post.title" />
+
+      <label for="text">Blog text</label>
+      <textarea id="text" name="text" rows="7" required [(ngModel)]="post.text"></textarea>
+
+      <label for="author-name">Author name</label>
+      <input id="author-name" name="author" type="text" required [(ngModel)]="post.author" />
+
+      <button type="submit" [disabled]="postForm.invalid || isSubmitting">Publish post</button>
+    </form>
+
+    <p id="result" role="status">{{ result }}</p>
+  </section>
+
+  <section class="posts">
+    <h2>Posts</h2>
+    <div id="posts-list">
+      <p *ngIf="posts.length === 0">No posts yet. Be the first to publish one.</p>
+      <article *ngFor="let item of posts">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        <p>{{ item.author }}</p>
+      </article>
+    </div>
+  </section>
+</main>
