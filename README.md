@@ -1,14 +1,14 @@
-# Simple FastAPI project
+# Simple Angular + FastAPI project
 
-This project contains a small FastAPI backend and a static blog frontend. Posts
-are stored in memory and are lost when the backend restarts.
+This project contains a small FastAPI backend and an Angular blog frontend.
+Posts are stored in memory and are lost when the backend restarts.
 
 ## Run the backend
 
 ```bash
 cd backend
-python -m pip install -r requirements.txt
-uvicorn main:app --reload
+uv sync
+uv run uvicorn main:app --reload
 ```
 
 The API is available at `http://localhost:8000`. The API provides `GET /api/posts` to retrieve all posts and `POST /api/posts`
@@ -17,13 +17,17 @@ documentation is available at `http://localhost:8000/docs`.
 
 ## Run the frontend
 
-From the repository root, serve the frontend with any static file server:
+Install the frontend dependencies once, then start the Angular development
+server:
 
 ```bash
-python -m http.server 3000 --directory frontend
+cd frontend
+npm install
+npm start
 ```
 
-Open `http://localhost:3000` in a browser and submit the form.
+Open the URL printed by Angular (normally `http://localhost:4200`) and submit
+the form.
 
 ## Releases
 
