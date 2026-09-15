@@ -31,18 +31,18 @@ the form.
 
 ## Releases
 
-Release Please manages the backend and frontend as independent release
-components. Each component starts at version `0.1.0` and receives tags such as
-`backend-v0.1.1` and `frontend-v0.1.1`.
+Release Please manages the repository as one project-level release named MPM.
+The current project version is `0.3.0`, and future releases use tags in the
+format `MPM@major.minor.patch`, such as `MPM@0.3.1` or `MPM@1.0.0`.
 
-Use conventional commit scopes to identify the component:
+Use conventional commits without a backend/frontend release scope:
 
 ```text
-feat(backend): add post validation
-fix(frontend): improve mobile layout
+feat: add post validation
+fix: improve mobile layout
 ```
 
 When changes are pushed to `main`, the Release Please workflow opens or updates
-a release pull request. Merging that pull request creates the component's
-GitHub release, changelog, and semver tag. A `feat` commit creates a minor
-release, while `fix` creates a patch release; use `!` for a breaking change.
+a single release pull request. Merging it creates one GitHub release, a root
+`CHANGELOG.md`, and an MPM semver tag. A `feat` commit creates a minor release,
+while `fix` creates a patch release; use `!` for a breaking change.

@@ -1,14 +1,33 @@
 {
-  "separate-pull-requests": true,
   "include-component-in-tag": true,
+  "include-v-in-tag": false,
+  "tag-separator": "@",
   "packages": {
-    "backend": {
+    ".": {
       "release-type": "simple",
-      "component": "backend"
-    },
-    "frontend": {
-      "release-type": "simple",
-      "component": "frontend"
+      "component": "MPM",
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "frontend/package.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "frontend/package-lock.json",
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "frontend/package-lock.json",
+          "jsonpath": "$.packages[\"\"].version"
+        },
+        {
+          "type": "toml",
+          "path": "backend/pyproject.toml",
+          "jsonpath": "$.project.version"
+        }
+      ]
     }
   }
 }
