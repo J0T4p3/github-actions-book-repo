@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -14,13 +14,20 @@ app.add_middleware(
 )
 
 
-class BlogPost(BaseModel):
+class BlogPostCreate(BaseModel):
     title: str
     text: str
     author: str
 
 
+class BlogPost(BlogPostCreate):
+    id: int
+
+
 posts: list[BlogPost] = []
+next_post_id = 1
+
+
 
 
 @app.get("/api/health")
@@ -34,6 +41,19 @@ def get_posts() -> list[BlogPost]:
 
 
 @app.post("/api/posts", status_code=201)
-def create_post(post: BlogPost) -> BlogPost:
-    posts.append(post)
-    return post
+def create_post(post: BlogPostCreate) -> BlogPost:
+    global next_post_id
+
+    created_post = BlogPost(id=next_post_id, **post.model_dump())
+    posts.append(created_post)
+    next_post_id += 1
+    return created_post
+
+
+@app.delete("/api/posts/{post_id}")
+def delete_post(post_id: int) -> BlogPost:
+    for index, post in enumerate(posts):
+        if post.id == post_id:
+            return posts.pop(index)
+
+    raise HTTPException(status_code=404, detail="Post not found")

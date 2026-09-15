@@ -11,8 +11,9 @@ uv sync
 uv run uvicorn main:app --reload
 ```
 
-The API is available at `http://localhost:8000`. The API provides `GET /api/posts` to retrieve all posts and `POST /api/posts`
-to create a post with `title` and `text` fields. Interactive API
+The API is available at `http://localhost:8000`. The API provides `GET /api/posts` to retrieve all posts, `POST /api/posts`
+to create a post with `title`, `text`, and `author` fields, and `DELETE /api/posts/{post_id}` to remove a post by its ID.
+Each returned post includes an `id` field. Interactive API
 documentation is available at `http://localhost:8000/docs`.
 
 ## Run the frontend
